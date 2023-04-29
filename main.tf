@@ -33,7 +33,7 @@ resource "aws_default_vpc" "default" {
 }
 
 ################### SECURITY GROUP ##########################
-resource "aws_security_group" "test" {
+resource "aws_security_group" "demo_sg" {
   name        = "demo_sg"
   description = "Allow TLS inbound traffic"
   ingress {
@@ -54,12 +54,12 @@ resource "aws_security_group" "test" {
   }
 }
 
-# resource "aws_s3_bucket" "terraform-test-bucket-sheharyar" {
-#   bucket = "demo-github-action-tf-medium-sheharyar"
+resource "aws_s3_bucket" "terraform-test-bucket-sheharyar" {
+  bucket = "demo-github-action-tf-medium-sheharyar"
 
-#   object_lock_enabled = false
+  object_lock_enabled = false
 
-#   tags = {
-#     Environment = "Prod"
-#   }
-# }
+  tags = {
+    Environment = "Prod"
+  }
+}
