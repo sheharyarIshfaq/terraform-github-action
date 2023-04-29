@@ -12,8 +12,8 @@ provider "aws" {
   region = "us-east-1" # define region as per your account
 }
 
-resource "aws_s3_bucket" "terraform-test-bucket" {
-  bucket = "demo-github-action-tf-medium"
+resource "aws_s3_bucket" "terraform-test-bucket-sheharyar" {
+  bucket = "demo-github-action-tf-medium-sheharyar"
 
   object_lock_enabled = false
 
