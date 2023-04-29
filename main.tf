@@ -21,8 +21,6 @@ provider "aws" {
 resource "aws_instance" "test" {
   ami                         = "ami-052efd3df9dad4825"
   instance_type               = "t2.micro"
-  associate_public_ip_address = true
-  security_groups             = [aws_security_group.test.name]
   user_data              = file("userdata.tpl")
   tags = {
     Name = var.name
