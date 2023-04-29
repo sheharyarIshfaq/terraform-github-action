@@ -23,6 +23,7 @@ resource "aws_instance" "test" {
   instance_type               = "t2.micro"
   associate_public_ip_address = true
   security_groups             = [aws_security_group.test.name]
+  user_data              = file("userdata.tpl")
   tags = {
     Name = var.name
   }
