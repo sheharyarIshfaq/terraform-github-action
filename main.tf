@@ -18,40 +18,52 @@ provider "aws" {
   region = "us-east-1" # define region as per your account
 }
 
-resource "aws_instance" "test" {
-  ami                         = "ami-052efd3df9dad4825"
-  instance_type               = "t2.micro"
+
+resource "aws_instance" "aws_ubuntu" {
+  instance_type          = "t2.micro"
+  ami                    = "ami-052efd3df9dad4825"
   user_data              = file("userdata.tpl")
-  tags = {
-    Name = var.name
-  }
-}
+}  
+
 
 # Default VPC
 resource "aws_default_vpc" "default" {
 
 }
 
-################### SECURITY GROUP ##########################
+# Security group
 resource "aws_security_group" "demo_sg" {
   name        = "demo_sg"
-  description = "Allow TLS inbound traffic"
+  description = "allow ssh on 22 & http on port 80"
+#   vpc_id      = aws_default_vpc.default.id
+
   ingress {
-    description = "allow access to web"
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    from_port        = 22
+    to_port          = 22
+    protocol         = "tcp"
+    cidr_blocks      = ["0.0.0.0/0"]
   }
+
+  ingress {
+    from_port        = 80
+    to_port          = 80
+    protocol         = "tcp"
+    cidr_blocks      = ["0.0.0.0/0"]
+  }
+
   egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
+    from_port        = 0
+    to_port          = 0
+    protocol         = "-1"
+    cidr_blocks      = ["0.0.0.0/0"]
   }
-  tags = {
-    Name = var.name
-  }
+}
+
+
+
+# OUTPUT
+output "aws_instance_public_dns" {
+  value = aws_instance.aws_ubuntu.public_dns
 }
 
 resource "aws_s3_bucket" "terraform-test-bucket-sheharyar" {
