@@ -54,12 +54,12 @@ resource "aws_security_group" "test" {
   }
 }
 
-resource "aws_s3_bucket" "terraform-test-bucket-sheharyar" {
-  bucket = "demo-github-action-tf-medium-sheharyar"
+# resource "aws_s3_bucket" "terraform-test-bucket-sheharyar" {
+#   bucket = "demo-github-action-tf-medium-sheharyar"
 
-  object_lock_enabled = false
+#   object_lock_enabled = false
 
-  tags = {
-    Environment = "Prod"
-  }
-}
+#   tags = {
+#     Environment = "Prod"
+#   }
+# }
