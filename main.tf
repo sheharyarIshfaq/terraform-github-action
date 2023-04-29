@@ -1,3 +1,9 @@
+################### VARIABLES ##############################
+variable "name" {
+  type    = string
+  default = "Terraform-state"
+}
+
 terraform {
   required_providers {
     aws = {
