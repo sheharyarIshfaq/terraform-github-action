@@ -26,9 +26,15 @@ resource "aws_instance" "test" {
     Name = var.name
   }
 }
+
+# Default VPC
+resource "aws_default_vpc" "default" {
+
+}
+
 ################### SECURITY GROUP ##########################
 resource "aws_security_group" "test" {
-  name        = var.name
+  name        = "demo_sg"
   description = "Allow TLS inbound traffic"
   ingress {
     description = "allow access to web"
